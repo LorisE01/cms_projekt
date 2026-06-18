@@ -1,4 +1,5 @@
 <?php
+// 1. CSS und JS einbinden (Dein ursprünglicher Code)
 function agency_theme_assets() {
     // Google Fonts
     wp_enqueue_style('google-fonts-montserrat', 'https://fonts.googleapis.com/css?family=Montserrat:400,700', [], null);
@@ -21,3 +22,32 @@ function agency_theme_assets() {
     wp_enqueue_script('sb-forms', 'https://cdn.startbootstrap.com/sb-forms-latest.js', [], null, true);
 }
 add_action('wp_enqueue_scripts', 'agency_theme_assets');
+
+
+// 2. Theme-Funktionen für die Aufgabenstellung aktivieren
+function thm_medieninformatik_setup() {
+    // Beitragsbilder aktivieren, damit die Fotos der Lehrenden im Backend hochgeladen werden können
+    add_theme_support('post-thumbnails'); 
+    
+    // Dynamisches Navigationsmenü registrieren (Bearbeitbar unter Design -> Menüs)
+    register_nav_menus(array(
+        'primary' => 'Hauptnavigation',
+    ));
+}
+add_action('after_setup_theme', 'thm_medieninformatik_setup');
+
+
+// 3. Dynamischen Footer als Widget registrieren
+function thm_medieninformatik_widgets() {
+    // Erstellt einen Widget-Bereich für den Footer (Bearbeitbar unter Design -> Widgets)
+    register_sidebar(array(
+        'name'          => 'Footer Widget Bereich',
+        'id'            => 'footer-widget',
+        'before_widget' => '<div class="col-lg-4 my-3 my-lg-0 footer-widget">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h4 class="widget-title">',
+        'after_title'   => '</h4>',
+    ));
+}
+add_action('widgets_init', 'thm_medieninformatik_widgets');
+?>
