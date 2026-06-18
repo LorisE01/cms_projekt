@@ -22,7 +22,8 @@
             <?php
             // Die Fächer als Kategorien abrufen
             $categories = get_categories(array(
-                'exclude' => 1 // "Uncategorized" ausschließen
+                'include' => array(4, 5, 3), 
+                'orderby' => 'include'
             ));
 
             $count = 0;
