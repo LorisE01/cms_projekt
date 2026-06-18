@@ -21,4 +21,4 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         port: 22
         local_path: './*'
-        remote_path: '/html/wordpress/wp-content/themes/agency-theme/'
+        remote_path: '/html/wordpress/wp-content/themes/agency_theme/'
