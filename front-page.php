@@ -22,7 +22,7 @@
             <?php
             // Die Fächer als Kategorien abrufen
             $categories = get_categories(array(
-                'include' => array(4, 5, 3), 
+                'include' => array(3, 4, 5), 
                 'orderby' => 'include'
             ));
 
