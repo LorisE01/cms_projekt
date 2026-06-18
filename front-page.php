@@ -12,7 +12,6 @@
     </div>
 </section>
 
-
 <section class="page-section bg-light" id="lehrende">
     <div class="container">
         <div class="text-center mb-5">
@@ -21,7 +20,7 @@
         
         <div class="accordion" id="accordionLehrende">
             <?php
-            [cite_start]// Die Fächer als Kategorien abrufen [cite: 27]
+            // Die Fächer als Kategorien abrufen
             $categories = get_categories(array(
                 'exclude' => 1 // "Uncategorized" ausschließen
             ));
@@ -45,11 +44,11 @@
                         <div class="accordion-body">
                             <div class="row text-center mt-4">
                                 <?php
-                                [cite_start]// Beiträge (Lehrende) der jeweiligen Kategorie (Fach) abfragen [cite: 26, 27]
+                                // Beiträge (Lehrende) der jeweiligen Kategorie (Fach) abfragen
                                 $args = array(
                                     'post_type' => 'post',
                                     'cat' => $category->term_id,
-                                    [cite_start]'orderby' => 'title', // Alphabetische Sortierung [cite: 28]
+                                    'orderby' => 'title', // Alphabetische Sortierung
                                     'order' => 'ASC',
                                     'posts_per_page' => -1
                                 );
@@ -62,7 +61,7 @@
                                         <div class="col-lg-3 col-md-6 mb-4">
                                             <a href="<?php the_permalink(); ?>">
                                                 <?php 
-                                                [cite_start]// Nur das Beitragsbild (Foto) auf der Startseite [cite: 29]
+                                                // Nur das Beitragsbild (Foto) auf der Startseite
                                                 if (has_post_thumbnail()) {
                                                     the_post_thumbnail('medium', array('class' => 'rounded-circle img-fluid mb-3 shadow-sm', 'style' => 'width: 150px; height: 150px; object-fit: cover;'));
                                                 } 
