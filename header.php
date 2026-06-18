@@ -12,24 +12,26 @@
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
-                    <span class="text-success">Medien</span>informatik
+                    <span class="text-success">Medieninformatik</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu <i class="fas fa-bars ms-1"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <?php
-                    wp_nav_menu(array(
-                        'theme_location' => 'primary',
-                        'menu_class'     => 'navbar-nav text-uppercase ms-auto py-4 py-lg-0',
-                        'container'      => false,
-                    ));
+                        wp_nav_menu(array(
+                            'theme_location' => 'primary',
+                            'menu_class'     => 'navbar-nav text-uppercase ms-auto py-4 py-lg-0',
+                            'container'      => false,
+                            'add_li_class'   => 'nav-item',
+                            'add_a_class'    => 'nav-link'
+                        ));
                     ?>
                 </div>
             </div>
         </nav>
 
-        <header class="masthead" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/header-laptop.jpg'); background-size: cover;">
+        <header class="masthead" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/header.jpg'); background-size: cover;">
             <div class="container">
                 <div class="masthead-subheading">Technische Hochschule Mittelhessen</div>
                 <div class="masthead-heading text-uppercase">MEDIENINFORMATIK</div>

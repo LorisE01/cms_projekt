@@ -50,4 +50,23 @@ function thm_medieninformatik_widgets() {
     ));
 }
 add_action('widgets_init', 'thm_medieninformatik_widgets');
+
+// Fügt die Klasse 'nav-item' zu den <li> Elementen im Menü hinzu
+function agency_add_li_class($classes, $item, $args) {
+    if(isset($args->add_li_class)) {
+        $classes[] = $args->add_li_class;
+    }
+    return $classes;
+}
+add_filter('nav_menu_css_class', 'agency_add_li_class', 1, 3);
+
+// Fügt die Klasse 'nav-link' zu den <a> Elementen im Menü hinzu
+function agency_add_a_class($atts, $item, $args) {
+    if(isset($args->add_a_class)) {
+        $atts['class'] = $args->add_a_class;
+    }
+    return $atts;
+}
+add_filter('nav_menu_link_attributes', 'agency_add_a_class', 1, 3);
+
 ?>
