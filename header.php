@@ -9,23 +9,28 @@
     </head>
     <body <?php body_class(); ?> id="page-top">
         
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <!-- Navigation-->
+        <!-- navbar-expand-md sorgt für den Umbruch bei kleiner 769px -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
-                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/schriftzug-logo.svg" alt="Medieninformatik" />
+                    <!-- Logo -->
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.svg" alt="Medieninformatik" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu <i class="fas fa-bars ms-1"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <?php
-                        wp_nav_menu(array(
-                            'theme_location' => 'primary',
-                            'menu_class'     => 'navbar-nav text-uppercase ms-auto py-4 py-lg-0',
-                            'container'      => false,
-                            'add_li_class'   => 'nav-item',
-                            'add_a_class'    => 'nav-link'
-                        ));
+                    // Das dynamische Menü, steuerbar über Design -> Menüs[cite: 1]
+                    wp_nav_menu(array(
+                        'theme_location' => 'primary',
+                        'menu_class'     => 'navbar-nav text-uppercase ms-auto py-4 py-md-0',
+                        'container'      => false,
+                        'add_li_class'   => 'nav-item',
+                        'add_a_class'    => 'nav-link',
+                        'depth'          => 1 // Zwingt das Menü auf maximal eine Ebene
+                    ));
                     ?>
                 </div>
             </div>
