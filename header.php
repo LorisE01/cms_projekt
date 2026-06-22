@@ -15,7 +15,7 @@
             <div class="container">
                 <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
                     <!-- Logo -->
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.svg" alt="Medieninformatik" style="height: 35px;"/>
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/schriftzug-logo.svg" alt="Medieninformatik" style="height: 35px;"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu <i class="fas fa-bars ms-1"></i>
