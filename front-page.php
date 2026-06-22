@@ -1,5 +1,3 @@
-<?php get_header(); ?>
-
 <section class="page-section" id="allgemeines-schwerpunkte">
     <div class="container text-center">
         <?php
@@ -74,21 +72,33 @@
                                                 </a>
                                             </h5>
                                             <p class="text-muted small"><?php echo esc_html($category->name); ?></p>
-                                            <div class="d-flex justify-content-center gap-2 mt-3">
-                                            <!-- E-Mail Icon -->
-                                            <a href="#" class="lehrende-icon text-white text-decoration-none">
-                                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px; background-color: #4a5c66;">
-                                                    <i class="fas fa-envelope fa-sm"></i>
-                                                </div>
-                                            </a>
                                             
-                                            <!-- Website Icon -->
-                                            <a href="#" class="lehrende-icon text-white text-decoration-none">
-                                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px; background-color: #4a5c66;">
-                                                    <i class="fas fa-window-maximize fa-sm"></i>
-                                                </div>
-                                            </a>
-                                        </div>
+                                            <?php 
+                                            // Die Links aus dem Backend abrufen
+                                            $email_link = get_post_meta(get_the_ID(), 'email', true);
+                                            $website_link = get_post_meta(get_the_ID(), 'website', true);
+                                            ?>
+                                            
+                                            <div class="d-flex justify-content-center gap-2 mt-3">
+                                                <!-- E-Mail Icon (Wird nur angezeigt, wenn im Backend eingetragen) -->
+                                                <?php if ($email_link) : ?>
+                                                <a href="<?php echo esc_attr($email_link); ?>" class="lehrende-icon text-white text-decoration-none">
+                                                    <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px; background-color: #4a5c66;">
+                                                        <i class="fas fa-envelope fa-sm"></i>
+                                                    </div>
+                                                </a>
+                                                <?php endif; ?>
+                                                
+                                                <!-- Website Icon (Wird nur angezeigt, wenn im Backend eingetragen) -->
+                                                <?php if ($website_link) : ?>
+                                                <a href="<?php echo esc_url($website_link); ?>" target="_blank" class="lehrende-icon text-white text-decoration-none">
+                                                    <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px; background-color: #4a5c66;">
+                                                        <i class="fas fa-window-maximize fa-sm"></i>
+                                                    </div>
+                                                </a>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div> <!-- DAS WAR DAS FEHLENDE DIV -->
                                         <?php
                                     }
                                     wp_reset_postdata();
