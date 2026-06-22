@@ -1,3 +1,5 @@
+<?php get_header(); ?>
+
 <section class="page-section" id="allgemeines-schwerpunkte">
     <div class="container text-center">
         <?php
