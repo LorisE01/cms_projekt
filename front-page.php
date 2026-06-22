@@ -74,10 +74,20 @@
                                                 </a>
                                             </h5>
                                             <p class="text-muted small"><?php echo esc_html($category->name); ?></p>
-                                            <div class="d-flex justify-content-center gap-2">
-                                                <div class="bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 30px; height: 30px;"><i class="fas fa-envelope fa-sm"></i></div>
-                                                <div class="bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 30px; height: 30px;"><i class="fas fa-globe fa-sm"></i></div>
-                                            </div>
+                                            <div class="d-flex justify-content-center gap-2 mt-3">
+                                            <!-- E-Mail Icon -->
+                                            <a href="#" class="lehrende-icon text-white text-decoration-none">
+                                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px; background-color: #4a5c66;">
+                                                    <i class="fas fa-envelope fa-sm"></i>
+                                                </div>
+                                            </a>
+                                            
+                                            <!-- Website Icon -->
+                                            <a href="#" class="lehrende-icon text-white text-decoration-none">
+                                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px; background-color: #4a5c66;">
+                                                    <i class="fas fa-window-maximize fa-sm"></i>
+                                                </div>
+                                            </a>
                                         </div>
                                         <?php
                                     }
