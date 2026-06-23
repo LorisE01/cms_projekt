@@ -47,7 +47,7 @@
                                     }
                                     ?>
 
-                                    <span class="badge rounded-pill text-white px-3 py-2" style="background-color: #4a5e65;">
+                                    <span class="badge rounded-pill text-white px-3 py-2" style="background-color: #80bd24;">
                                         <?php echo esc_html( $category->name ); ?>
                                     </span>
 
