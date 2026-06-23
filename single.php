@@ -1,26 +1,74 @@
-<?php get_header(); // Lädt die Navigation und den Header ?>
+<?php get_header(); ?>
 
-<div class="container py-5" style="margin-top: 100px;">
-    <?php while ( have_posts() ) : the_post(); ?>
-        <div class="row">
-            <!-- Das Bild der Person -->
-            <div class="col-md-4 text-center">
-                <?php if ( has_post_thumbnail() ) { 
-                    the_post_thumbnail('large', array('class' => 'img-fluid rounded-circle', 'style' => 'width: 300px; height: 300px; object-fit: cover;')); 
-                } ?>
-            </div>
+<main class="bg-light min-vh-100 py-5" style="padding-top: 140px !important;">
 
-            <!-- Der Inhalt (Name, Text, Links) -->
-            <div class="col-md-8">
-                <h1 class="text-uppercase" style="color: #4a5e65;"><?php the_title(); ?></h1>
-                <hr>
-                <div class="mt-4">
-                    <?php the_content(); ?>
+    <div class="container">
+
+        <?php while ( have_posts() ) : the_post(); ?>
+
+            <article class="bg-white rounded-4 shadow-lg p-4 p-md-5">
+
+                <div class="row align-items-center g-5">
+
+                    <!-- Bild der Person -->
+                    <div class="col-md-4 text-center">
+
+                        <?php if ( has_post_thumbnail() ) : ?>
+
+                            <?php 
+                                the_post_thumbnail(
+                                    'large',
+                                    array(
+                                        'class' => 'img-fluid rounded-circle shadow border border-5 border-white',
+                                        'style' => 'width: 300px; height: 300px; object-fit: cover;'
+                                    )
+                                ); 
+                            ?>
+
+                        <?php else : ?>
+
+                            <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mx-auto shadow"
+                                 style="width: 300px; height: 300px; font-size: 5rem; font-weight: bold;">
+                                <?php echo esc_html( strtoupper( substr( get_the_title(), 0, 1 ) ) ); ?>
+                            </div>
+
+                        <?php endif; ?>
+
+                    </div>
+
+                    <!-- Inhalt -->
+                    <div class="col-md-8">
+
+                        <p class="text-uppercase fw-bold mb-2" style="color: #80bd24; letter-spacing: 2px;">
+                            Lehrende
+                        </p>
+
+                        <h1 class="display-4 fw-bold text-uppercase mb-3" style="color: #4a5e65;">
+                            <?php the_title(); ?>
+                        </h1>
+
+                        <div class="mb-4" style="width: 90px; height: 5px; background-color: #80bd24; border-radius: 999px;"></div>
+
+                        <div class="fs-5 lh-lg text-secondary">
+                            <?php the_content(); ?>
+                        </div>
+
+                        <a href="<?php echo esc_url( home_url('/#lehrende') ); ?>" 
+                           class="btn btn-lg text-white fw-bold rounded-pill px-4 py-3 mt-4 shadow-sm"
+                           style="background-color: #4a5e65;">
+                            Zurück zur Übersicht
+                        </a>
+
+                    </div>
+
                 </div>
-                <a href="<?php echo home_url(); ?>#lehrende" class="btn btn-secondary mt-4" style="background-color: #4a5e65;">Zurück zur Übersicht</a>
-            </div>
-        </div>
-    <?php endwhile; ?>
-</div>
 
-<?php get_footer(); // Lädt den Footer ?>
+            </article>
+
+        <?php endwhile; ?>
+
+    </div>
+
+</main>
+
+<?php get_footer(); ?>
