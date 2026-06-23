@@ -34,7 +34,7 @@
                                 Lehrende
                             </span>
 
-                            // Hier werden die Kategorien/ Themengebiete angezeigt, zu denen die Lehrende gehören
+                            <!-- Hier werden die Kategorien Themengebiete angezeigt, zu denen die Lehrende gehören -->
                             <?php
                             $categories = get_the_category();
 
