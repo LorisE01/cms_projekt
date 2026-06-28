@@ -6,7 +6,13 @@ function agency_theme_assets() {
     wp_enqueue_style('google-fonts-roboto', 'https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700', [], null);
 
     // Theme CSS (enthält Bootstrap)
-    wp_enqueue_style('agency-styles', get_template_directory_uri() . '/css/styles.css', [], '1.0');
+    $styles_path = get_template_directory() . '/css/styles.css';
+    wp_enqueue_style(
+        'agency-styles',
+        get_template_directory_uri() . '/css/styles.css',
+        [],
+        filemtime($styles_path)
+    );
 
     // Font Awesome
     wp_enqueue_script('font-awesome', 'https://use.fontawesome.com/releases/v6.3.0/js/all.js', [], null, false);
