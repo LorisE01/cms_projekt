@@ -49,7 +49,8 @@
                                 $args = array(
                                     'post_type' => 'post',
                                     'cat' => $category->term_id,
-                                    'orderby' => 'title', // Alphabetische Sortierung
+                                    'meta_key' => 'nachname', // Sortierung nach Nachname
+                                    'orderby' => 'meta_value',
                                     'order' => 'ASC',
                                     'posts_per_page' => -1
                                 );
