@@ -87,7 +87,7 @@
                                                 <?php if ($email_link) : ?>
                                                 <a href="<?php echo esc_attr($email_link); ?>" class="lehrende-icon text-white text-decoration-none">
                                                     <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px; background-color: #4a5c66;">
-                                                        <i class="fas fa-envelope fa-sm"></i>
+                                                        <i class="fa-solid fa-envelope"></i>
                                                     </div>
                                                 </a>
                                                 <?php endif; ?>
@@ -96,7 +96,7 @@
                                                 <?php if ($website_link) : ?>
                                                 <a href="<?php echo esc_url($website_link); ?>" target="_blank" class="lehrende-icon text-white text-decoration-none">
                                                     <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px; background-color: #4a5c66;">
-                                                        <i class="fas fa-window-maximize fa-sm"></i>
+                                                        <i class="fa-solid fa-address-card"></i>
                                                     </div>
                                                 </a>
                                                 <?php endif; ?>
