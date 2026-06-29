@@ -34,7 +34,7 @@
                 $isOpen = ($count == 1) ? 'show' : ''; // Erstes Element aufklappen
                 ?>
                 
-                <div class="accordion-item mb-3 border-0 shadow-sm">
+                <div class="accordion-item mb-2 border-0 shadow-sm">
                     <h3 class="accordion-header bg-secondary text-white p-3" id="<?php echo $headingId; ?>">
                         <button class="accordion-button text-white bg-transparent border-0 w-100 text-start font-weight-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $collapseId; ?>" aria-expanded="true" aria-controls="<?php echo $collapseId; ?>">
                             <?php echo esc_html($category->name); ?>
