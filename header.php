@@ -39,6 +39,6 @@
         <header class="masthead" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/header.jpg'); background-size: cover;">
             <div class="container">
                 <div class="masthead-subheading">Technische Hochschule Mittelhessen</div>
-                <div class="masthead-heading text-uppercase">MEDIENINFORMATIK</div>
+                <div class="masthead-heading text-uppercase">Medieninformatik</div>
             </div>
         </header>

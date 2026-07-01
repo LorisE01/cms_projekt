@@ -101,7 +101,7 @@
                                                 </a>
                                                 <?php endif; ?>
                                             </div>
-                                        </div> <!-- DAS WAR DAS FEHLENDE DIV -->
+                                        </div>
                                         <?php
                                     }
                                     wp_reset_postdata();

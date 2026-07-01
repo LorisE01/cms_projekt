@@ -3,7 +3,7 @@
 <main class="bg-light min-vh-100 py-5" style="padding-top: 140px !important;">
     <div class="container">
         <?php while ( have_posts() ) : the_post(); ?>
-            <article class="bg-white rounded-4 shadow-lg p-4 p-md-5">
+            <article class="bg-white rounded-3 shadow-lg p-4 p-md-5">
                 <div class="row align-items-center g-5">
                     <!-- Bild der Person -->
                     <div class="col-md-4 text-center">
