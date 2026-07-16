@@ -57,7 +57,7 @@
                             ?>
                         </div>
 
-                        <h1 class="display-4 fw-bold text-uppercase mb-3" style="color: #4a5e65;">
+                        <h1 class="display-4 fw-bold text-uppercase mb-3" style="color: #4a5c66;">
                             <?php the_title(); ?>
                         </h1>
 
@@ -73,7 +73,7 @@
                         <a
                             href="<?php echo esc_url( home_url( '/#lehrende' ) ); ?>"
                             class="btn btn-lg text-white fw-bold rounded-pill px-4 py-3 mt-4 shadow-sm"
-                            style="background-color: #4a5e65;"
+                            style="background-color: #4a5c66;"
                         >
                             Zurück zur Übersicht
                         </a>
