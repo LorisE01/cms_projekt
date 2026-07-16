@@ -1,16 +1,32 @@
 <?php get_header(); ?>
 
-<section class="page-section" id="allgemeines-schwerpunkte">
-    <div class="container text-center">
-        <?php
-        if ( have_posts() ) :
-            while ( have_posts() ) : the_post();
-                the_content(); 
-            endwhile;
-        endif;
-        ?>
-    </div>
-</section>
+<?php
+if ( have_posts() ) :
+    while ( have_posts() ) :
+        the_post();
+
+        $startseiten_bloecke = parse_blocks( get_the_content() );
+        $bereich_ids = array( 'allgemeines', 'schwerpunkte' );
+        $bereich_index = 0;
+
+        foreach ( $startseiten_bloecke as $startseiten_block ) :
+            if ( empty( $startseiten_block['blockName'] ) && empty( trim( $startseiten_block['innerHTML'] ) ) ) {
+                continue;
+            }
+
+            $bereich_id = $bereich_ids[ $bereich_index ] ?? 'startseiten-bereich-' . ( $bereich_index + 1 );
+            ?>
+            <section class="page-section" id="<?php echo esc_attr( $bereich_id ); ?>">
+                <div class="container text-center">
+                    <?php echo apply_filters( 'the_content', serialize_block( $startseiten_block ) ); ?>
+                </div>
+            </section>
+            <?php
+            $bereich_index++;
+        endforeach;
+    endwhile;
+endif;
+?>
 
 <section class="page-section bg-light" id="lehrende">
     <div class="container">
