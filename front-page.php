@@ -28,7 +28,7 @@ if ( have_posts() ) :
 endif;
 ?>
 
-<section class="page-section bg-light" id="lehrende">
+<section class="page-section" id="lehrende">
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="section-heading text-uppercase">Lehrende</h2>
