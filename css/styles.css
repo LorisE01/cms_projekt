@@ -11325,9 +11325,14 @@ section#contact form#contactForm :-ms-input-placeholder {
   overflow: hidden;
 }
 
+#accordionLehrende .accordion-header {
+  background-color: #4a5c66 !important;
+}
+
 #schwerpunkte {
   background-color: #f8f9fa;
 }
+
 
 .footer {
   background-color: #4a5c66 !important;
