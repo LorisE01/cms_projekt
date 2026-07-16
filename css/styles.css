@@ -10883,7 +10883,7 @@ p {
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #212529;
+  background-color: #4a5c66;
 }
 #mainNav .navbar-toggler {
   padding: 0.75rem;
@@ -10931,7 +10931,7 @@ p {
   #mainNav.navbar-shrink {
     padding-top: 1rem;
     padding-bottom: 1rem;
-    background-color: #212529;
+    background-color: #4a5c66;
   }
   #mainNav.navbar-shrink .navbar-brand {
     font-size: 1.25em;
@@ -11327,4 +11327,8 @@ section#contact form#contactForm :-ms-input-placeholder {
 
 #schwerpunkte {
   background-color: #f8f9fa;
+}
+
+.footer {
+  background-color: #4a5c66 !important;
 }
