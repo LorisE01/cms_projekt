@@ -11324,3 +11324,7 @@ section#contact form#contactForm :-ms-input-placeholder {
   border-radius: 0.25rem;
   overflow: hidden;
 }
+
+#schwerpunkte {
+  background-color: #f8f9fa;
+}
