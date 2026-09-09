@@ -75,13 +75,4 @@ function agency_add_a_class($atts, $item, $args) {
 }
 add_filter('nav_menu_link_attributes', 'agency_add_a_class', 1, 3);
 
-// 4. WooCommerce Produktgalerie Unterstützung aktivieren
-function thm_theme_woocommerce_support() {
-    add_theme_support( 'woocommerce' );
-    add_theme_support( 'wc-product-gallery-zoom' );
-    add_theme_support( 'wc-product-gallery-lightbox' );
-    add_theme_support( 'wc-product-gallery-slider' );
-}
-add_action( 'after_setup_theme', 'thm_theme_woocommerce_support' );
-
 ?>
