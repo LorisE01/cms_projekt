@@ -84,4 +84,62 @@ function thm_theme_woocommerce_support() {
 }
 add_action( 'after_setup_theme', 'thm_theme_woocommerce_support' );
 
+// 5. Produktkategorien auf der Shop-Seite filtern
+function thm_shop_category_filter() {
+    if ( ! is_shop() && ! is_product_category() ) {
+        return;
+    }
+
+    $selected_category = '';
+
+    if ( isset( $_GET['product_cat'] ) ) {
+        $selected_category = sanitize_title(
+            wp_unslash( $_GET['product_cat'] )
+        );
+    } elseif ( is_product_category() ) {
+        $selected_category = get_queried_object()->slug;
+    }
+    ?>
+
+    <form
+        class="thm-shop-filter"
+        method="get"
+        action="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>"
+    >
+        <div class="thm-shop-filter__field">
+            <label for="product-category">Produktkategorie</label>
+
+            <?php
+            wc_product_dropdown_categories(
+                array(
+                    'id'                => 'product-category',
+                    'name'              => 'product_cat',
+                    'selected'          => $selected_category,
+                    'show_option_none'  => 'Alle Kategorien',
+                    'option_none_value' => '',
+                    'orderby'           => 'name',
+                    'hierarchical'      => true,
+                    'hide_empty'        => true,
+                )
+            );
+            ?>
+        </div>
+
+        <?php
+        if ( isset( $_GET['orderby'] ) ) :
+            ?>
+            <input
+                type="hidden"
+                name="orderby"
+                value="<?php echo esc_attr( wc_clean( wp_unslash( $_GET['orderby'] ) ) ); ?>"
+            >
+        <?php endif; ?>
+
+        <button type="submit">Filtern</button>
+    </form>
+
+    <?php
+}
+add_action( 'woocommerce_before_shop_loop', 'thm_shop_category_filter', 15 );
+
 ?>

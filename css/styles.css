@@ -11465,3 +11465,65 @@ body.woocommerce-page main.site-main {
     grid-template-columns: 1fr;
   }
 }
+
+.thm-shop-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.thm-shop-filter__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.thm-shop-filter label {
+  color: #4a5c66;
+  font-weight: 700;
+}
+
+.thm-shop-filter select {
+  min-width: 220px;
+  padding: 0.65rem 0.75rem;
+  color: #4a5c66;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.thm-shop-filter select:focus {
+  border-color: #80ba24;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(128, 186, 36, 0.2);
+}
+
+.thm-shop-filter button {
+  padding: 0.65rem 1rem;
+  color: #fff;
+  font-weight: 700;
+  background-color: #80ba24;
+  border: 0;
+  border-radius: 0.25rem;
+}
+
+.thm-shop-filter button:hover {
+  background-color: #6d9f1f;
+}
+
+@media (max-width: 575.98px) {
+  .thm-shop-filter {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .thm-shop-filter__field {
+    width: 100%;
+  }
+
+  .thm-shop-filter select {
+    width: 100%;
+  }
+}
