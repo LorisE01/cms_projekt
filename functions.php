@@ -85,19 +85,49 @@ function thm_theme_woocommerce_support() {
 add_action( 'after_setup_theme', 'thm_theme_woocommerce_support' );
 
 // 5. Produktkategorien auf der Shop-Seite filtern
+
+// Liest die ausgewählten Kategorien aus der URL und bereinigt ihre Slugs.
+function thm_get_selected_product_categories() {
+    if ( empty( $_GET['product_categories'] ) ) {
+        return array();
+    }
+
+    $categories = array_filter(
+        (array) wp_unslash( $_GET['product_categories'] ),
+        'is_string'
+    );
+
+    return array_values(
+        array_filter( array_map( 'sanitize_title', $categories ) )
+    );
+}
+
+// Erstellt die Mehrfachauswahl oberhalb der WooCommerce-Produktliste.
 function thm_shop_category_filter() {
+    // Der Filter soll nur im Shop und auf Produktkategorie-Seiten erscheinen.
     if ( ! is_shop() && ! is_product_category() ) {
         return;
     }
 
-    $selected_category = '';
+    $selected_categories = thm_get_selected_product_categories();
 
-    if ( isset( $_GET['product_cat'] ) ) {
-        $selected_category = sanitize_title(
-            wp_unslash( $_GET['product_cat'] )
-        );
-    } elseif ( is_product_category() ) {
-        $selected_category = get_queried_object()->slug;
+    // Beim direkten Aufruf einer Kategorie-Seite wird diese vorausgewählt.
+    if ( empty( $selected_categories ) && is_product_category() ) {
+        $selected_categories[] = get_queried_object()->slug;
+    }
+
+    // Es werden nur Kategorien angezeigt, denen veröffentlichte Produkte zugeordnet sind.
+    $product_categories = get_terms(
+        array(
+            'taxonomy'   => 'product_cat',
+            'hide_empty' => true,
+            'orderby'    => 'name',
+            'order'      => 'ASC',
+        )
+    );
+
+    if ( is_wp_error( $product_categories ) || empty( $product_categories ) ) {
+        return;
     }
     ?>
 
@@ -106,26 +136,26 @@ function thm_shop_category_filter() {
         method="get"
         action="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>"
     >
-        <div class="thm-shop-filter__field">
-            <label for="product-category">Produktkategorie</label>
+        <fieldset class="thm-shop-filter__field">
+            <legend>Produktkategorien</legend>
 
-            <?php
-            wc_product_dropdown_categories(
-                array(
-                    'id'                => 'product-category',
-                    'name'              => 'product_cat',
-                    'selected'          => $selected_category,
-                    'show_option_none'  => 'Alle Kategorien',
-                    'option_none_value' => '',
-                    'orderby'           => 'name',
-                    'hierarchical'      => true,
-                    'hide_empty'        => true,
-                )
-            );
-            ?>
-        </div>
+            <div class="thm-shop-filter__options">
+                <?php foreach ( $product_categories as $product_category ) : ?>
+                    <label class="thm-shop-filter__option">
+                        <input
+                            type="checkbox"
+                            name="product_categories[]"
+                            value="<?php echo esc_attr( $product_category->slug ); ?>"
+                            <?php checked( in_array( $product_category->slug, $selected_categories, true ) ); ?>
+                        >
+                        <span><?php echo esc_html( $product_category->name ); ?></span>
+                    </label>
+                <?php endforeach; ?>
+            </div>
+        </fieldset>
 
         <?php
+        // Behält die vorhandene WooCommerce-Sortierung, zum Beispiel nach Preis, bei.
         if ( isset( $_GET['orderby'] ) ) :
             ?>
             <input
@@ -136,10 +166,39 @@ function thm_shop_category_filter() {
         <?php endif; ?>
 
         <button type="submit">Filtern</button>
+
+        <?php if ( ! empty( $selected_categories ) ) : ?>
+            <a
+                class="thm-shop-filter__reset"
+                href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>"
+            >
+                Zurücksetzen
+            </a>
+        <?php endif; ?>
     </form>
 
     <?php
 }
+
+// Positioniert den Kategorie-Filter vor der eigentlichen Produktliste.
 add_action( 'woocommerce_before_shop_loop', 'thm_shop_category_filter', 15 );
+
+// Ergänzt die WooCommerce-Produktabfrage um die ausgewählten Kategorien.
+function thm_filter_products_by_categories( $tax_query ) {
+    $selected_categories = thm_get_selected_product_categories();
+
+    if ( ! empty( $selected_categories ) ) {
+        $tax_query[] = array(
+            'taxonomy' => 'product_cat',
+            'field'    => 'slug',
+            'terms'    => $selected_categories,
+            // IN bedeutet: Das Produkt muss mindestens einer Auswahl angehören.
+            'operator' => 'IN',
+        );
+    }
+
+    return $tax_query;
+}
+add_filter( 'woocommerce_product_query_tax_query', 'thm_filter_products_by_categories' );
 
 ?>

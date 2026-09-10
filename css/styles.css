@@ -11475,29 +11475,53 @@ body.woocommerce-page main.site-main {
 }
 
 .thm-shop-filter__field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+  flex: 1 1 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
 
-.thm-shop-filter label {
+.thm-shop-filter__field legend {
+  margin-bottom: 0.65rem;
   color: #4a5c66;
+  font-size: 1rem;
   font-weight: 700;
 }
 
-.thm-shop-filter select {
-  min-width: 220px;
-  padding: 0.65rem 0.75rem;
+.thm-shop-filter__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.thm-shop-filter__option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.75rem;
   color: #4a5c66;
+  cursor: pointer;
   background-color: #fff;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
 }
 
-.thm-shop-filter select:focus {
-  border-color: #80ba24;
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(128, 186, 36, 0.2);
+.thm-shop-filter__option:has(input:checked) {
+  color: #fff;
+  background-color: #4a5c66;
+  border-color: #4a5c66;
+}
+
+.thm-shop-filter__option input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  accent-color: #80ba24;
+}
+
+.thm-shop-filter__option:focus-within {
+  outline: 3px solid rgba(128, 186, 36, 0.35);
+  outline-offset: 2px;
 }
 
 .thm-shop-filter button {
@@ -11513,6 +11537,16 @@ body.woocommerce-page main.site-main {
   background-color: #6d9f1f;
 }
 
+.thm-shop-filter__reset {
+  padding: 0.65rem 0.25rem;
+  color: #4a5c66;
+  font-weight: 700;
+}
+
+.thm-shop-filter__reset:hover {
+  color: #9c132e;
+}
+
 @media (max-width: 575.98px) {
   .thm-shop-filter {
     align-items: stretch;
@@ -11523,7 +11557,18 @@ body.woocommerce-page main.site-main {
     width: 100%;
   }
 
-  .thm-shop-filter select {
+  .thm-shop-filter__options,
+  .thm-shop-filter__option,
+  .thm-shop-filter button,
+  .thm-shop-filter__reset {
     width: 100%;
+  }
+
+  .thm-shop-filter__options {
+    flex-direction: column;
+  }
+
+  .thm-shop-filter__reset {
+    text-align: center;
   }
 }
