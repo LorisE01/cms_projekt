@@ -48,7 +48,11 @@ add_action('wp_enqueue_scripts', 'agency_theme_assets');
 // 2. Theme-Funktionen für die Aufgabenstellung aktivieren
 function thm_medieninformatik_setup() {
     // Beitragsbilder aktivieren, damit die Fotos der Lehrenden im Backend hochgeladen werden können
-    add_theme_support('post-thumbnails'); 
+    add_theme_support('post-thumbnails');
+
+    // Erweiterte Block-Einstellungen wie Margin, Padding und Rahmen
+    add_theme_support( 'appearance-tools' );
+
     
     // Dynamisches Navigationsmenü registrieren (Bearbeitbar unter Design -> Menüs)
     register_nav_menus(array(
