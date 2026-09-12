@@ -1,5 +1,5 @@
 <?php
-// 1. CSS und JS einbinden (Dein ursprünglicher Code)
+// 1. CSS und JS einbinden
 function agency_theme_assets() {
     // Google Fonts
     wp_enqueue_style('google-fonts-montserrat', 'https://fonts.googleapis.com/css?family=Montserrat:400,700', [], null);
@@ -7,12 +7,14 @@ function agency_theme_assets() {
 
     // Theme CSS (enthält Bootstrap)
     $styles_path = get_template_directory() . '/css/styles.css';
-    wp_enqueue_style(
-        'agency-styles',
-        get_template_directory_uri() . '/css/styles.css',
-        [],
-        filemtime($styles_path)
-    );
+    if (file_exists($styles_path)) {
+        wp_enqueue_style(
+            'agency-styles',
+            get_template_directory_uri() . '/css/styles.css',
+            [],
+            filemtime($styles_path)
+        );
+    }
 
     // Font Awesome
     wp_enqueue_script('font-awesome', 'https://use.fontawesome.com/releases/v6.3.0/js/all.js', [], null, false);
@@ -24,8 +26,21 @@ function agency_theme_assets() {
     // Theme JS
     wp_enqueue_script('agency-scripts', get_template_directory_uri() . '/js/scripts.js', ['bootstrap-js'], '1.0', true);
 
-    // SB Forms JS
-    wp_enqueue_script('sb-forms', 'https://cdn.startbootstrap.com/sb-forms-latest.js', [], null, true);
+    // SB Forms JS: NUR auf der Startseite laden (behebt JS-Fehler auf Unterseiten)
+    if (is_front_page()) {
+        wp_enqueue_script('sb-forms', 'https://cdn.startbootstrap.com/sb-forms-latest.js', [], null, true);
+    }
+
+    // API JavaScript: Auf allen Unterseiten einbinden
+    if (!is_front_page()) {
+        wp_enqueue_script(
+            'custom-api-script',
+            get_stylesheet_directory_uri() . '/js/api-handler.js',
+            [],
+            '1.0',
+            true
+        );
+    }
 }
 add_action('wp_enqueue_scripts', 'agency_theme_assets');
 
@@ -75,6 +90,7 @@ function agency_add_a_class($atts, $item, $args) {
 }
 add_filter('nav_menu_link_attributes', 'agency_add_a_class', 1, 3);
 
+
 // 4. WooCommerce Produktgalerie Unterstützung aktivieren
 function thm_theme_woocommerce_support() {
     add_theme_support( 'woocommerce' );
@@ -83,6 +99,7 @@ function thm_theme_woocommerce_support() {
     add_theme_support( 'wc-product-gallery-slider' );
 }
 add_action( 'after_setup_theme', 'thm_theme_woocommerce_support' );
+
 
 // 5. Produktkategorien auf der Shop-Seite filtern
 
@@ -201,4 +218,13 @@ function thm_filter_products_by_categories( $tax_query ) {
 }
 add_filter( 'woocommerce_product_query_tax_query', 'thm_filter_products_by_categories' );
 
+// Standard-Sidebar von WooCommerce entfernen
+function thm_remove_woocommerce_sidebar() {
+    remove_action(
+        'woocommerce_sidebar',
+        'woocommerce_get_sidebar',
+        10
+    );
+}
+add_action( 'wp', 'thm_remove_woocommerce_sidebar' );
 ?>
