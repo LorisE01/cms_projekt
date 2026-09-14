@@ -26,11 +26,6 @@ function agency_theme_assets() {
     // Theme JS
     wp_enqueue_script('agency-scripts', get_template_directory_uri() . '/js/scripts.js', ['bootstrap-js'], '1.0', true);
 
-    // SB Forms JS: NUR auf der Startseite laden (behebt JS-Fehler auf Unterseiten)
-    if (is_front_page()) {
-        wp_enqueue_script('sb-forms', 'https://cdn.startbootstrap.com/sb-forms-latest.js', [], null, true);
-    }
-
     // API JavaScript: Auf allen Unterseiten einbinden
     if (!is_front_page()) {
         wp_enqueue_script(
